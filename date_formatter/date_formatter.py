@@ -35,24 +35,24 @@ class DateFormatter:
 
             if REGION_FORMAT == 'US':
 
-                # format is "2018-18-12" ("YYYY-DD-MM")
-
-                day_string_regex = r"([0-9]{2})\-[0-9]{2}\-[0-9]{4}"
-                month_string_regex = r"[0-9]{2}\-([0-9]{2})\-[0-9]{4}"
-
-            else:
-
-                # format is "2018-12-18" "YYYY-MM-DD"
+                # format is "12-18-2014" ("MM-DD-YYYY")
 
                 month_string_regex = r"([0-9]{2})\-[0-9]{2}\-[0-9]{4}"
                 day_string_regex = r"[0-9]{2}\-([0-9]{2})\-[0-9]{4}"
 
+            else:
+
+                # format is "18-12-2014" ("DD-MM-YYYY")
+
+                day_string_regex = r"([0-9]{2})\-[0-9]{2}\-[0-9]{4}"
+                month_string_regex = r"[0-9]{2}\-([0-9]{2})\-[0-9]{4}"
+
         else:
 
-            # format is "2018-12-18" "YYYY-MM-DD"
+            # format is "18-12-2014" ("DD-MM-YYYY")
 
-            month_string_regex = r"([0-9]{2})\-[0-9]{2}\-[0-9]{4}"
-            day_string_regex = r"[0-9]{2}\-([0-9]{2})\-[0-9]{4}"
+            day_string_regex = r"([0-9]{2})\-[0-9]{2}\-[0-9]{4}"
+            month_string_regex = r"[0-9]{2}\-([0-9]{2})\-[0-9]{4}"
 
         def check_for_correct_starting_string_format(regex_main, dt_):
 
