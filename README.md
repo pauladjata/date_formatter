@@ -1,4 +1,4 @@
-# date_time_format
+# date_formatter
 
 a Python package that formats a ten character date string to a readable date string
 
