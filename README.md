@@ -21,8 +21,8 @@ print(myDates_AUS)
     
 ```
 ## returns:
-18-Dec-14
-18 December 2014
+* 18-Dec-14
+* 18 December 2014
 
 ## Parameters
 * **date_time_string: str**
