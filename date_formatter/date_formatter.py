@@ -1,16 +1,17 @@
 import numpy as np
 import re
 
+
 class DateFormatter:
 
-    def __init__(self, dt_, USE_FULL_MONTH_NAME, USE_HYPHEN_AS_SPACER, REGION_FORMAT):
+    def __init__(self, date_string, USE_FULL_MONTH_NAME, USE_HYPHEN_AS_SPACER, REGION_FORMAT):
 
-        self.dt_: str = dt_
+        self.date_string: str = date_string
         self.USE_FULL_MONTH_NAME: bool = USE_FULL_MONTH_NAME
         self.USE_HYPHEN_AS_SPACER: bool = USE_HYPHEN_AS_SPACER
         self.REGION_FORMAT: str = None
 
-    def dateFormat(dt_: str, USE_FULL_MONTH_NAME: bool, USE_HYPHEN_AS_SPACER: bool, REGION_FORMAT: str = None):
+    def dateFormat(date_string: str, USE_FULL_MONTH_NAME: bool, USE_HYPHEN_AS_SPACER: bool, REGION_FORMAT: str = None):
 
         def is_nan_true_or_false(x):
             return (x is np.nan or x != x)
@@ -33,8 +34,8 @@ class DateFormatter:
 
                 # format is "12-18-2014" ("MM-DD-YYYY")
 
-                month_string_regex = r"([0-9]{2})\-[0-9]{2}\-[0-9]{4}"
                 day_string_regex = r"[0-9]{2}\-([0-9]{2})\-[0-9]{4}"
+                month_string_regex = r"([0-9]{2})\-[0-9]{2}\-[0-9]{4}"
 
             else:
 
@@ -50,11 +51,11 @@ class DateFormatter:
             day_string_regex = r"([0-9]{2})\-[0-9]{2}\-[0-9]{4}"
             month_string_regex = r"[0-9]{2}\-([0-9]{2})\-[0-9]{4}"
 
-        def check_for_correct_starting_string_format(regex_main, dt_):
+        def check_for_correct_starting_string_format(regex_main, date_string):
 
             try:
 
-                re.findall(regex_main, dt_)[0]
+                re.findall(regex_main, date_string)[0]
 
                 return True
 
@@ -63,18 +64,18 @@ class DateFormatter:
                 return False
 
         # parameters:
-        # dt_: pandas datetime object
+        # date_string: str object "01-02-2014", 10 characters in length in the format "DD-MM-YYYY" or "MM-DD-YYYY"
         # USE_FULL_MONTH_NAME: BOOL: True | False: if True, uses the month's full name; if False, uses three letter abbreviation
         # USE_HYPHEN_AS_SPACER: BOOL: True | False: if True, uses '-' as spacer; if False uses " "
         # REGION_FORMAT: str: if "US", assumes format of "2018-18-12" ("YYYY-DD-MM"); if not or None, assumes format of "2018-12-18" ("YYYY-MM-DD")
 
-        if is_nan_true_or_false(dt_) or len(str(dt_)) < 10:
+        if is_nan_true_or_false(date_string) or len(str(date_string)) < 10:
 
-            return dt_
+            return date_string
 
         else:
 
-            dt_ = str(dt_)
+            date_string = str(date_string)
 
             if USE_FULL_MONTH_NAME:
 
@@ -127,13 +128,13 @@ class DateFormatter:
 
             regex_main = r"[0-9]{2}\-[0-9]{2}\-[0-9]{4}"
 
-            if check_for_correct_starting_string_format(regex_main, dt_):
+            if check_for_correct_starting_string_format(regex_main, date_string):
 
-                main_date_string = re.findall(regex_main, dt_)[0]
+                main_date_string = re.findall(regex_main, date_string)[0]
 
             else:
 
-                return dt_
+                return date_string
 
             year_string_regex = r"[0-9]{2}\-[0-9]{2}\-([0-9]{4})"
 
@@ -161,4 +162,4 @@ class DateFormatter:
 
             else:
 
-                return dt_
+                return date_string
