@@ -1,10 +1,6 @@
 import numpy as np
 import re
 
-import pandas as pd
-from datetime import datetime
-
-
 class DateFormatter:
 
     def __init__(self, dt_, USE_FULL_MONTH_NAME, USE_HYPHEN_AS_SPACER, REGION_FORMAT):
