@@ -1,6 +1,6 @@
 # date_time_format
 
-a Python package that formats a ten character string to a date
+a Python package that formats a ten character date string to a readable date string
 
 # Installation
 
